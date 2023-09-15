@@ -8,6 +8,8 @@ import NewBillet from './components/NewBillet';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
 import User from './components/User';
+import SignIn from './components/SignIn'; //
+
 
 function App() {
   const [currentRoute, setCurrentRoute] = useState();
@@ -53,6 +55,10 @@ function App() {
           </li>
         </ul>
       </nav>
+      <div>
+      <SignIn />
+      <User />
+    </div>
       <Routes>
         <Route path="/Home" element={<Home />} />
         <Route path="/Billets" element={<Billets />} />

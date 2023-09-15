@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import './User.css';
+import {auth,provider} from "./config";
+import {signInWithPopup} from "firebase/auth";
+import Home from "./Home";
+
+
 
 
 const User = () => {
@@ -100,5 +105,6 @@ const User = () => {
     </div>
   );
 };
+export default User ;
 
-export default User;
+
