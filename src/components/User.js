@@ -1,15 +1,14 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useState  } from 'react';
 import './User.css';
-import {auth,provider} from "./config";
-import {signInWithPopup} from "firebase/auth";
-import Home from "./Home";
+
 
 
 
 
 const User = () => {
 
-  const [username, setUsername] = useState('');
+  const [firstName, setfirstName] = useState('');
+  const [lastName,setlastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [photo, setPhoto] = useState('');
@@ -17,18 +16,21 @@ const User = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const User = {
-      username: username,
+      firstName: firstName,
+      lastName:lastName,
       email: email,
       password: password,
       photo: photo,
     };
 
-    console.log('Username:', username);
+    console.log('firstName:', firstName);
+    console.log('lastName:', lastName);
+
     console.log('Email:', email);
     console.log('Password:', password);
     console.log('Photo:', photo);
 
-    fetch('http://localhost:8080/user/add', {
+    fetch('http://localhost:8080/registration', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(User),
@@ -47,16 +49,27 @@ const User = () => {
       <h1>User</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
+          <label htmlFor="firstName" className="form-label">
+          firstName
           </label>
           <input
             type="text"
             className="form-control"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
+            id="firstName"
+            value={firstName}
+            onChange={(e) => setfirstName(e.target.value)}
+            placeholder="firstName"
+          />
+            <label htmlFor="lastName" className="form-label">
+            lastName
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="lastName"
+            value={lastName}
+            onChange={(e) => setlastName(e.target.value)}
+            placeholder="lastName"
           />
 
           <label htmlFor="exampleFormControlInput1" className="form-label">

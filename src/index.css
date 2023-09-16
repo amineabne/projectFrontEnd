@@ -1,4 +1,11 @@
+
 body {
+
+    background-image: url('./components/the-weeknd-stade-france-news-visu.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Pour fixer l'image en arrière-plan */
+  
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

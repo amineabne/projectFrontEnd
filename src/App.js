@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
+import {  Routes, Route } from 'react-router-dom';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
 import Billets from './components/Billets';
-import NewBillet from './components/NewBillet';
+import VendreBillets from './components/VendreBillets';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
 import User from './components/User';
-import SignIn from './components/SignIn'; //
+import SignIn from './components/SignIn'; 
 
 
 function App() {
@@ -53,16 +53,27 @@ function App() {
               Billets
             </NavLink>
           </li>
+          
+          
+          <li>
+            <NavLink
+              onClick={() => setCurrentRoute("VendreBillets")}
+              className={currentRoute === "VendreBillets" ? "btn btn-outline-info ms-1" : 'btn btn-outline-info ms-1'}
+              to="/VendreBillets"
+            >
+              VendreBillets
+            </NavLink>
+          </li>
         </ul>
       </nav>
       <div>
       <SignIn />
-      <User />
+   
     </div>
       <Routes>
         <Route path="/Home" element={<Home />} />
         <Route path="/Billets" element={<Billets />} />
-        <Route path="/NewBillet" element={<NewBillet />} />
+        <Route path="/VendreBillets" element={<VendreBillets />} />
         <Route path="/User" element={<User />} />
       </Routes>
     </BrowserRouter>
