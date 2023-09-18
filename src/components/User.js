@@ -50,7 +50,7 @@ const User = () => {
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="firstName" className="form-label">
-          firstName
+          Firstname
           </label>
           <input
             type="text"
@@ -61,7 +61,7 @@ const User = () => {
             placeholder="firstName"
           />
             <label htmlFor="lastName" className="form-label">
-            lastName
+           Lastname
           </label>
           <input
             type="text"
