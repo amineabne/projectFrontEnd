@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
 import User from './components/User';
 import SignIn from './components/SignIn'; 
+import Login from './components/login';
 
 
 function App() {
@@ -53,6 +54,15 @@ function App() {
               Billets
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              onClick={() => setCurrentRoute("login")}
+              className={currentRoute === "login" ? "btn btn-outline-info ms-1" : 'btn btn-outline-info ms-1'}
+              to="/login"
+            >
+              login
+            </NavLink>
+          </li>
           
           
           <li>
@@ -75,6 +85,7 @@ function App() {
         <Route path="/Billets" element={<Billets />} />
         <Route path="/VendreBillets" element={<VendreBillets />} />
         <Route path="/User" element={<User />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

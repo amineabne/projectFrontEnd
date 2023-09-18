@@ -8,6 +8,7 @@ const logout = () => {
   window.location.reload();
 };
 
+
 function Home() {
   const headerAnimation = useSpring({
     from: { opacity: 0, transform: 'translateY(-20px)' },

@@ -11,7 +11,7 @@ const User = () => {
   const [lastName,setlastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [photo, setPhoto] = useState('');
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const User = () => {
       lastName:lastName,
       email: email,
       password: password,
-      photo: photo,
+   
     };
 
     console.log('firstName:', firstName);
@@ -28,7 +28,7 @@ const User = () => {
 
     console.log('Email:', email);
     console.log('Password:', password);
-    console.log('Photo:', photo);
+ 
 
     fetch('http://localhost:8080/registration', {
       method: 'POST',
@@ -96,7 +96,7 @@ const User = () => {
             aria-describedby="passwordHelpBlock"
           />
 
-          <label htmlFor="photo" className="form-label">
+          {/* <label htmlFor="photo" className="form-label">
             Photo
           </label>
           <input
@@ -105,7 +105,7 @@ const User = () => {
             accept="image/*"
             onChange={(e) => setPhoto(e.target.value)}
             className="form-control"
-          />
+          /> */}
 
           <div id="passwordHelpBlock" className="form-text">
             Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
