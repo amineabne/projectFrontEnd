@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './login.css';
-import { useHistory } from 'react-router-dom'; 
+import { Navigate, useHistory } from 'react-router-dom'; 
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,12 +27,13 @@ function Login() {
     })
       .then((response) => {
         if (response.ok) {
-          // Successful login
+          
           return response.json().then((data) => {
             console.log(data);
             const { token } = data;
             localStorage.setItem('jwtToken', token);
             window.location.href = '/home'; 
+            
             
           });
         } else {

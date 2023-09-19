@@ -1,12 +1,12 @@
 /* Ajoutez ce CSS dans un fichier .css ou .scss séparé */
 
-/* Styles pour le formulaire */
+
 form {
     max-width: 400px;
     margin: 0 auto;
   }
   
-  /* Styles pour les champs de saisie */
+
   .form-label {
     margin-top: 10px;
     font-weight: bold;

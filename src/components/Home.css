@@ -7,17 +7,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
 }
-.logout {
-  position: absolute; /* Position absolue par rapport au conteneur */
-  top: 10px; /* Distance depuis le haut du conteneur */
-  right: 10px; /* Distance depuis la droite du conteneur */
-  padding: 10px 20px; /* Espace interne du bouton (ajustez selon vos besoins) */
-  background-color: #007bff; /* Couleur de fond du bouton */
-  color: #fff; /* Couleur du texte du bouton */
-  border: none; /* Supprimez la bordure du bouton si nécessaire */
-  border-radius: 5px; /* Coins arrondis du bouton */
-  cursor: pointer; /* Curseur de type main pour indiquer qu'il s'agit d'un élément cliquable */
-}
+
 
 /* Container Styles */
 .container {

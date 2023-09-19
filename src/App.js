@@ -3,23 +3,24 @@ import {  Routes, Route } from 'react-router-dom';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
-import Billets from './components/Billets';
+
 import VendreBillets from './components/VendreBillets';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
 import User from './components/User';
 import SignIn from './components/SignIn'; 
 import Login from './components/login';
+import Tickets from './components/Tickets';
 
 
 function App() {
   const [currentRoute, setCurrentRoute] = useState();
   useEffect(()=>{
+    
     const path=window.location.pathname.toLocaleLowerCase();
     setCurrentRoute(path.slice(1,path.length));
 
   },[]);
-
 
   
 
@@ -47,11 +48,11 @@ function App() {
           </li>
           <li>
             <NavLink
-              onClick={() => setCurrentRoute("billets")}
-              className={currentRoute === "billets" ? "btn btn-outline-info ms-1" : 'btn btn-outline-info ms-1'}
-              to="/billets"
+              onClick={() => setCurrentRoute("Tickets")}
+              className={currentRoute === "Tickets" ? "btn btn-outline-info ms-1" : 'btn btn-outline-info ms-1'}
+              to="/Tickets"
             >
-              Billets
+              Tickets
             </NavLink>
           </li>
           <li>
@@ -82,7 +83,7 @@ function App() {
     </div>
       <Routes>
         <Route path="/Home" element={<Home />} />
-        <Route path="/Billets" element={<Billets />} />
+        <Route path="/Tickets" element={<Tickets />} />
         <Route path="/VendreBillets" element={<VendreBillets />} />
         <Route path="/User" element={<User />} />
         <Route path="/login" element={<Login />} />
