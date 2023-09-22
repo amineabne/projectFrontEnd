@@ -1,0 +1,83 @@
+/* Style de la page principale */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style de la table des billets */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #f0f0f0;
+  }
+  
+  /* Boutons */
+  button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Formulaire de création */
+  .form-create {
+    margin-top: 20px;
+  }
+  
+  .form-create input[type="text"], .form-create input[type="date"], .form-create input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  /* Message d'erreur */
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  /* Styles spécifiques pour les boutons d'édition et de suppression */
+  .edit-button {
+    background-color: #28a745;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+  }
+  
