@@ -11,6 +11,9 @@ import User from './components/User';
 import SignIn from './components/SignIn'; 
 import Login from './components/login';
 import Tickets from './components/Tickets';
+import image from './components/logo.jpg';
+
+import Recherche from './components/recherche';
 
 
 function App() {
@@ -26,8 +29,15 @@ function App() {
 
   return (
     <BrowserRouter>
+     
       <nav className="m-1 p-1 border border-info">
         <ul className="nav nav-pills">
+        <nav className="m-1 p-1 border border-info">
+  <img src={image} alt="Logo" className="App-logo" />
+  <ul className="nav nav-pills">
+    {/* ... Vos liens de navigation existants */}
+  </ul>
+</nav>
           <li>
             <NavLink
               onClick={() => setCurrentRoute("home")}
@@ -37,6 +47,7 @@ function App() {
               Home
             </NavLink>
           </li>
+          
           <li>
             <NavLink
               onClick={() => setCurrentRoute("User")}
@@ -64,6 +75,15 @@ function App() {
               login
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              onClick={() => setCurrentRoute("recherche")}
+              className={currentRoute === "recherche" ? "btn btn-outline-info ms-1" : 'btn btn-outline-info ms-1'}
+              to="/recherche"
+            >
+              Find Your Tickets here 
+            </NavLink>
+          </li>
           
           
           <li>
@@ -77,8 +97,10 @@ function App() {
           </li>
         </ul>
       </nav>
+      
       <div>
       <SignIn />
+      
    
     </div>
       <Routes>
@@ -87,6 +109,7 @@ function App() {
         <Route path="/VendreBillets" element={<VendreBillets />} />
         <Route path="/User" element={<User />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/recherche" element={<Recherche />} />
       </Routes>
     </BrowserRouter>
   );

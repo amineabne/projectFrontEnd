@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Tickets.css';
-
+const authToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdW5haWQudGFsYWF0MTk5MEBnbWFpbC5jb20iLCJpYXQiOjE2OTUxMTgyMjAsImV4cCI6MTY5NTIwNDYyMH0.OToOG0PYx0eNlZYsq_2jxnCLftGWW1_oHMa78UAxLCE';
 function Tickets() {
   const [tickets, setTickets] = useState([]);
   const [editingTicket, setEditingTicket] = useState(null);
@@ -13,11 +13,32 @@ function Tickets() {
   });
 
   useEffect(() => {
-    // Charger les données de billets depuis l'API lorsque le composant est monté
-    fetch('http://localhost:8080/tickets')
-      .then((response) => response.json())
-      .then((data) => setTickets(data))
-      .catch((error) => console.error('Erreur lors du chargement des billets :', error));
+    // URL de l'endpoint
+    const authenticationEndpoint = 'http://localhost:8080/tickets';
+
+    // Token d'authentification
+    const authToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdW5haWQudGFsYWF0MTk5MEBnbWFpbC5jb20iLCJpYXQiOjE2OTUxMTgyMjAsImV4cCI6MTY5NTIwNDYyMH0.OToOG0PYx0eNlZYsq_2jxnCLftGWW1_oHMa78UAxLCE';
+
+    // Utilisation de fetch pour envoyer la requête 'GET' avec le token d'authentification
+    fetch(authenticationEndpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': authToken, // Ajoutez le token ici
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json().then((data) => {
+            setTickets(data);
+          });
+        } else {
+          throw new Error('Erreur lors de la récupération des billets');
+        }
+      })
+      .catch((error) => {
+        console.error('Erreur :', error.message);
+      });
   }, []);
 
   const handleEdit = (ticket) => {
@@ -44,6 +65,7 @@ function Tickets() {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': authToken, // N'oubliez pas d'ajouter le token ici aussi
       },
       body: JSON.stringify(editedTicket),
     })
@@ -62,6 +84,7 @@ function Tickets() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': authToken, // Ajoutez le token ici
       },
       body: JSON.stringify(newTicket),
     })

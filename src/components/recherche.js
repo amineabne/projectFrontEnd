@@ -1,5 +1,7 @@
+import React, { useState } from 'react';
 
-const [searchTerm, setSearchTerm] = useState('');
+export default function Recherche() {
+  const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -34,9 +36,9 @@ const [searchTerm, setSearchTerm] = useState('');
     <div className="p-1 m-1">
       <div className="card">
         <div className="card-body">
-          <h3>Billets</h3>
+          <h3>  Tickets </h3>
           <div className="form-group">
-            <label htmlFor="search">Rechercher des billets :</label>
+            <label htmlFor="search"> find your ticket </label>
             <input
               type="text"
               id="search"
@@ -45,7 +47,7 @@ const [searchTerm, setSearchTerm] = useState('');
               placeholder="Entrez un terme de recherche"
             />
             <button type="button" onClick={handleSearch} className="search-button">
-              Rechercher
+              Find now 
             </button>
           </div>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
@@ -64,4 +66,4 @@ const [searchTerm, setSearchTerm] = useState('');
       </div>
     </div>
   );
- 
+}
