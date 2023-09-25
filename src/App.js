@@ -3,6 +3,8 @@ import {  Routes, Route } from 'react-router-dom';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
+import UserProfile from './components/UserProfile';
+
 
 import VendreBillets from './components/VendreBillets';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +16,8 @@ import Tickets from './components/Tickets';
 import image from './components/logo.jpg';
 
 import Recherche from './components/recherche';
+import AcheterBillets from './components/AcheterBillets';
+import Rating from './components/Rating';
 
 
 function App() {
@@ -35,9 +39,20 @@ function App() {
         <nav className="m-1 p-1 border border-info">
   <img src={image} alt="Logo" className="App-logo" />
   <ul className="nav nav-pills">
-    {/* ... Vos liens de navigation existants */}
+
   </ul>
-</nav>
+  
+</nav> 
+<li>
+ <NavLink
+              onClick={() => setCurrentRoute("UserProfile")}
+              className={currentRoute === "UserProfile" ? "btn btn-outline-info ms-1" : 'btn btn-outline-info ms-1'}
+              to="/UserProfile"
+            >
+              UserProfile
+            </NavLink>
+            </li>
+
           <li>
             <NavLink
               onClick={() => setCurrentRoute("home")}
@@ -110,6 +125,10 @@ function App() {
         <Route path="/User" element={<User />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recherche" element={<Recherche />} />
+        <Route path="/AcheterBillets" element={<AcheterBillets />} />
+        <Route path="/UserProfile" element={<UserProfile />} />
+        <Route path="/Rating" element={<Rating />} />
+
       </Routes>
     </BrowserRouter>
   );

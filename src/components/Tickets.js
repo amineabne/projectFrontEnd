@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Tickets.css';
-const authToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdW5haWQudGFsYWF0MTk5MEBnbWFpbC5jb20iLCJpYXQiOjE2OTUxMTgyMjAsImV4cCI6MTY5NTIwNDYyMH0.OToOG0PYx0eNlZYsq_2jxnCLftGWW1_oHMa78UAxLCE';
+
+const authToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdW5haWQudGFsYWF0MTk5MEBnbWFpbC5jb20iLCJpYXQiOjE2OTU2NjE2MDgsImV4cCI6MTY5NTc0ODAwOH0.yHdEM-YVraPdEw14mr6DWaXNPyT5eCrhcGRFPgoIlDI';
+
 function Tickets() {
   const [tickets, setTickets] = useState([]);
   const [editingTicket, setEditingTicket] = useState(null);
@@ -13,18 +15,13 @@ function Tickets() {
   });
 
   useEffect(() => {
-    // URL de l'endpoint
     const authenticationEndpoint = 'http://localhost:8080/tickets';
 
-    // Token d'authentification
-    const authToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdW5haWQudGFsYWF0MTk5MEBnbWFpbC5jb20iLCJpYXQiOjE2OTUxMTgyMjAsImV4cCI6MTY5NTIwNDYyMH0.OToOG0PYx0eNlZYsq_2jxnCLftGWW1_oHMa78UAxLCE';
-
-    // Utilisation de fetch pour envoyer la requête 'GET' avec le token d'authentification
     fetch(authenticationEndpoint, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': authToken, // Ajoutez le token ici
+        'Authorization': authToken,
       },
     })
       .then((response) => {
@@ -43,15 +40,23 @@ function Tickets() {
 
   const handleEdit = (ticket) => {
     setEditingTicket(ticket);
+    setNewTicket({
+      eventName: ticket.eventName,
+      eventDate: ticket.eventDate,
+      price: ticket.price,
+      details: ticket.details,
+      state: ticket.state,
+    });
   };
 
   const handleDelete = (ticket) => {
-    // Envoyer une requête DELETE à l'API pour supprimer le billet
     fetch(`http://localhost:8080/tickets/${ticket.id}`, {
       method: 'DELETE',
+      headers: {
+        'Authorization': authToken,
+      },
     })
       .then(() => {
-        // Après la suppression réussie, mettre à jour l'état local "tickets" en excluant le billet supprimé
         const updatedTickets = tickets.filter((t) => t.id !== ticket.id);
         setTickets(updatedTickets);
         setEditingTicket(null);
@@ -60,36 +65,45 @@ function Tickets() {
   };
 
   const handleSave = (editedTicket) => {
-    // Envoyer une requête PUT à l'API pour mettre à jour le billet avec les données modifiées
     fetch(`http://localhost:8080/tickets/${editedTicket.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': authToken, // N'oubliez pas d'ajouter le token ici aussi
+        'Authorization': authToken,
       },
-      body: JSON.stringify(editedTicket),
+      body: JSON.stringify(newTicket),
     })
       .then(() => {
-        // Après la mise à jour réussie, mettre à jour l'état local "tickets" avec la nouvelle version du billet
-        const updatedTickets = tickets.map((t) => (t.id === editedTicket.id ? editedTicket : t));
+        const updatedTickets = tickets.map((t) => (t.id === editedTicket.id ? newTicket : t));
         setTickets(updatedTickets);
         setEditingTicket(null);
       })
       .catch((error) => console.error('Erreur lors de la mise à jour du billet :', error));
   };
+  const handleAcheter = (ticket) => {
+    // Use window.location.href to navigate to the "/AcheterBillets" URL
+    window.location.href = '/AcheterBillets';
+  };
+  
+
+  const handleInputChange = (e, ticket, field) => {
+    const newValue = e.target.value;
+    setNewTicket((prevNewTicket) => ({
+      ...prevNewTicket,
+      [field]: newValue,
+    }));
+  };
 
   const handleCreate = () => {
-    // Envoyer une requête POST à l'API pour créer un nouveau billet en utilisant les données de "newTicket"
     fetch('http://localhost:8080/tickets', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': authToken, // Ajoutez le token ici
+        'Authorization': authToken,
       },
       body: JSON.stringify(newTicket),
     })
       .then(() => {
-        // Après la création réussie, mettre à jour l'état local "tickets" en ajoutant le nouveau billet
         fetch('http://localhost:8080/tickets')
           .then((response) => response.json())
           .then((data) => {
@@ -122,16 +136,67 @@ function Tickets() {
             <th>Details</th>
             <th>State</th>
             <th>Actions</th>
+            <th>Acheter des Billets</th>
           </tr>
         </thead>
         <tbody>
           {tickets.map((ticket) => (
             <tr key={ticket.id}>
-              <td>{ticket.eventName}</td>
-              <td>{new Date(ticket.eventDate).toLocaleDateString()}</td>
-              <td>{ticket.price}</td>
-              <td>{ticket.details}</td>
-              <td>{ticket.state}</td>
+              <td>
+                {editingTicket === ticket ? (
+                  <input
+                    type="text"
+                    value={newTicket.eventName}
+                    onChange={(e) => handleInputChange(e, ticket, 'eventName')}
+                  />
+                ) : (
+                  ticket.eventName
+                )}
+              </td>
+              <td>
+                {editingTicket === ticket ? (
+                  <input
+                    type="text"
+                    value={newTicket.eventDate}
+                    onChange={(e) => handleInputChange(e, ticket, 'eventDate')}
+                  />
+                ) : (
+                  new Date(ticket.eventDate).toLocaleDateString()
+                )}
+              </td>
+              <td>
+                {editingTicket === ticket ? (
+                  <input
+                    type="text"
+                    value={newTicket.price}
+                    onChange={(e) => handleInputChange(e, ticket, 'price')}
+                  />
+                ) : (
+                  ticket.price
+                )}
+              </td>
+              <td>
+                {editingTicket === ticket ? (
+                  <input
+                    type="text"
+                    value={newTicket.details}
+                    onChange={(e) => handleInputChange(e, ticket, 'details')}
+                  />
+                ) : (
+                  ticket.details
+                )}
+              </td>
+              <td>
+                {editingTicket === ticket ? (
+                  <input
+                    type="text"
+                    value={newTicket.state}
+                    onChange={(e) => handleInputChange(e, ticket, 'state')}
+                  />
+                ) : (
+                  ticket.state
+                )}
+              </td>
               <td>
                 {editingTicket === ticket ? (
                   <button onClick={() => handleSave(ticket)}>Enregistrer</button>
@@ -139,6 +204,7 @@ function Tickets() {
                   <>
                     <button onClick={() => handleEdit(ticket)}>Éditer</button>
                     <button onClick={() => handleDelete(ticket)}>Supprimer</button>
+                    <button onClick={() => handleAcheter(ticket)}>Acheter des Billets</button>
                   </>
                 )}
               </td>
