@@ -9,15 +9,15 @@
 }
 
 .logo-image {
-  width: 25px; /* Ajustez la largeur du logo en fonction de vos besoins */
-  height: 25px; /* Ajustez la hauteur du logo en fonction de vos besoins */
+  width: 20px; /* Ajustez la largeur du logo en fonction de vos besoins */
+  height: 20px; /* Ajustez la hauteur du logo en fonction de vos besoins */
   display: block;
   margin: 0 auto; /* Centrez le logo horizontalement */
 }
 
 
 body {
-  background-image: url('./components/ultra.jpg'); /* Ajoutez le chemin vers votre image de fond */
+  background-image: url('./components/Q6G4EMF5HBG4XEZXA7SVD37GAI.jpg'); /* Ajoutez le chemin vers votre image de fond */
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -32,11 +32,17 @@ body {
 
 
 .App-logo {
-  height: 15vmin;
-  pointer-events: none;
+  height: 8vmin;
+  pointer-events: visibleFill;
+   width: auto; /* Laissez la largeur automatique pour conserver les proportions */
+  height: 40px; /* Ajustez la hauteur en pixels pour correspondre à la taille de la barre de navigation */
+  display: block;
+  margin: 0 auto;
 }
 
-
+.App-logo:hover {
+  transform: scale(1.8); /* Agrandissement de 20% au survol */
+}
 
 
 .App-header {

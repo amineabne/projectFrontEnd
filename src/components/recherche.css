@@ -1,0 +1,82 @@
+/* styles.css */
+
+/* Styles pour la carte */
+.card {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  /* Styles pour le titre */
+  h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles pour les champs de formulaire */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style du bouton de recherche */
+  .search-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style du message d'erreur */
+  .error-message {
+    color: #ff0000;
+    margin-top: 10px;
+  }
+  
+  /* Style des résultats de la recherche */
+  .search-results {
+    margin-top: 20px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  /* Réduire la largeur de la carte sur les petits écrans */
+  @media (max-width: 768px) {
+    .card {
+      width: 100%;
+    }
+  }
+  

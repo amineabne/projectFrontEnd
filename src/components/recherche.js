@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import'./recherche.css';
 
 export default function Recherche() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -9,16 +14,32 @@ export default function Recherche() {
     setSearchTerm(e.target.value);
   };
 
+  const handleStartDateChange = (e) => {
+    setStartDate(e.target.value);
+  };
+
+  const handleEndDateChange = (e) => {
+    setEndDate(e.target.value);
+  };
+
+  const handleMinPriceChange = (e) => {
+    setMinPrice(e.target.value);
+  };
+
+  const handleMaxPriceChange = (e) => {
+    setMaxPrice(e.target.value);
+  };
+
   const handleSearch = () => {
-    // Effectuez une requête GET à l'endpoint pour récupérer les billets
-    const fetchEndpoint = 'http://localhost:8080/users/tickets';
+    // Effectuez une requête GET à l'endpoint pour récupérer les billets avec des paramètres de filtre
+    const fetchEndpoint = `http://localhost:8080/tickets?title=${searchTerm}&eventStartDate=${startDate}&eventEndDate=${endDate}&priceMin=${minPrice}&priceMax=${maxPrice}`;
 
     fetch(fetchEndpoint)
       .then((response) => {
         if (response.ok) {
           return response.json().then((data) => {
             // Stockez les résultats de la recherche dans l'état
-            setSearchResults(data.billets); // Assurez-vous que les billets sont correctement extraits de la réponse.
+            setSearchResults(data);
             setErrorMessage('');
           });
         } else {
@@ -36,9 +57,9 @@ export default function Recherche() {
     <div className="p-1 m-1">
       <div className="card">
         <div className="card-body">
-          <h3>  Tickets </h3>
+          <h3>Tickets</h3>
           <div className="form-group">
-            <label htmlFor="search"> find your ticket </label>
+            <label htmlFor="search">Nom de l'événement</label>
             <input
               type="text"
               id="search"
@@ -46,10 +67,42 @@ export default function Recherche() {
               onChange={handleSearchChange}
               placeholder="Entrez un terme de recherche"
             />
-            <button type="button" onClick={handleSearch} className="search-button">
-              Find now 
-            </button>
           </div>
+          <div className="form-group">
+            <label>Date de début</label>
+            <input
+              type="date"
+              value={startDate}
+              onChange={handleStartDateChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Date de fin</label>
+            <input
+              type="date"
+              value={endDate}
+              onChange={handleEndDateChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Prix minimum</label>
+            <input
+              type="number"
+              value={minPrice}
+              onChange={handleMinPriceChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Prix maximum</label>
+            <input
+              type="number"
+              value={maxPrice}
+              onChange={handleMaxPriceChange}
+            />
+          </div>
+          <button type="button" onClick={handleSearch} className="search-button">
+            Rechercher
+          </button>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
         </div>
         {/* Affichez les résultats de la recherche */}
