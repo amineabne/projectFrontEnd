@@ -6,7 +6,6 @@ import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 
 
-import VendreBillets from './components/VendreBillets';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
 import User from './components/User';
@@ -100,16 +99,7 @@ function App() {
             </NavLink>
           </li>
           
-          
-          <li>
-            <NavLink
-              onClick={() => setCurrentRoute("VendreBillets")}
-              className={currentRoute === "VendreBillets" ? "btn btn-outline-info ms-1" : 'btn btn-outline-info ms-1'}
-              to="/VendreBillets"
-            >
-              VendreBillets
-            </NavLink>
-          </li>
+
         </ul>
       </nav>
       
@@ -121,7 +111,6 @@ function App() {
       <Routes>
         <Route path="/Home" element={<Home />} />
         <Route path="/Tickets" element={<Tickets />} />
-        <Route path="/VendreBillets" element={<VendreBillets />} />
         <Route path="/User" element={<User />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recherche" element={<Recherche />} />

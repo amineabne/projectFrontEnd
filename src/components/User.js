@@ -118,6 +118,6 @@ const User = () => {
     </div>
   );
 };
-export default User ;
+export default User;
 
 
